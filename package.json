@@ -1,0 +1,16 @@
+{
+  "name": "kubacho-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "kubacho.github.io/kubacho-lab",
+  "dependencies": {
+    "gh-pages": "^5.0.0"
+  }
+}
