@@ -13,11 +13,17 @@
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
 
+    <script type="text/javascript"
+        src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
+    <script src="script.js"></script>
+
 </head>
 
 
 
 <body>
+
 
 
     <div class="header">
@@ -38,16 +44,17 @@
 
 
     </div>
-    <canvas class="canvas" id="canvas"></canvas>
-    <script src="script.js"></script>
+
 
     <div class="fullscreenSection">
+        <canvas class="glslCanvas" data-fragment-url="shader.frag"></canvas>
+        <!-- <canvas class="canvas" id="canvas"></canvas> -->
+        <!-- <script src="script.js"></script> -->
         <div class="headline">
-            <p>Great tools make great games.</p>
-            <p>We make both.</p>
+            <!-- <p>Great tools make great games.</p> -->
+            <!-- <p>We make both.</p> -->
         </div>
     </div>
-
 
 
 
