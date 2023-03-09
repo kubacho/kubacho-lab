@@ -3,6 +3,7 @@
 
 <head>
     <title>kubacho lab</title>
+    <script src="path/to/index.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -17,7 +18,7 @@
 
 
 
-<body>
+<body onload="webGLStart()">
 
 
     <div class="header">
@@ -39,35 +40,16 @@
 
     </div>
 
-
-
-
-    <div class="headline">
-        <br>
-        <br>
-        <br>
-        <br><br>
-        <br><br>
-        <br><br>
-        <br><br>
-        <br>
-        <br>
-        <!-- <p>Great tools make great games. We make both.</p> -->
-
-        <!-- <p>Great tools make great games</p> -->
-        <!-- <p>We make both</p> -->
-
-        <p>Great tools make great games.</p>
-        <p>We make both.</p>
-        <br>
-        <br>
-        <br><br>
-        <br><br>
-        <br><br>
-        <br><br><br><br>
-        <br>
-
+    <div class="fullscreenSection">
+        <!-- <canvas class="canvas"></canvas> -->
+        <canvas id="lesson11-canvas" width="500" height="500"></canvas>
+        <div class="headline">
+            <p>Great tools make great games.</p>
+            <p>We make both.</p>
+        </div>
     </div>
+
+
 
 
 
