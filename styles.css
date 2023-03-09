@@ -1,0 +1,56 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: #2B2B2B;
+}
+
+
+.logo {
+    padding: 220px;
+    text-align: center;
+    /* background: #2B2B2B; */
+    color: white;
+}
+
+.logo h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 45px;
+}
+
+.logo p {
+    font-size: 19px;
+    color: grey;
+}
+
+
+
+.sectionOdd {
+    padding: 220px;
+    text-align: center;
+    background: #222222;
+    color: white;
+}
+
+.sectionOdd h1 {
+    font-size: 45px;
+}
+
+.sectionOdd p {
+    font-size: 19px;
+    color: grey;
+}
+
+.sectionEven {
+    padding: 220px;
+    text-align: center;
+    /* background: #222222; */
+    color: white;
+}
+
+.sectionEven h1 {
+    font-size: 45px;
+}
+
+.sectionEven p {
+    font-size: 19px;
+    color: grey;
+}
