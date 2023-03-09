@@ -67,7 +67,7 @@ float func( vec2 q, out vec4 ron )
 
 
 void main() {
-vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.xy/1.5;
+vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.xy*vec2(1.0, 4.0)/1.5;
     float e = 2.0/u_resolution.y;
 
     vec4 on = vec4(0.0);
@@ -98,6 +98,11 @@ vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.xy/1.5;
 	col = 1.0 - col;
 	col = 1.1*col*col;
     
+
+
+if(p.y>1.333)
+f = 1.0-f;
+
 
 
 col.rgb = vec3(f/8.0);
