@@ -10,8 +10,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Ubuntu:wght@300;400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&family=Ubuntu:wght@300;400&display=swap"
         rel="stylesheet">
+
+    <script type="text/javascript"
+        src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
+    <script src="script.js"></script>
 
 </head>
 
@@ -19,27 +24,60 @@
 
 <body>
 
-    <div class="logo">
-        <h1>{ kubacho lab }</h1>
-        <p>Great tools make great games. We make both. </p>
+
+
+    <div class="header">
+        <div class="logo">
+            <h1>{ kubacho lab }</h1>
+            <!-- <p>Great tools make great games. We make both. </p> -->
+        </div>
+        <div class="navbar">
+            <a href="#contact">Contact</a>
+            <a href="#work">Our work</a>
+            <a href="#about">About us</a>
+        </div>
     </div>
 
-    <div class="sectionOdd">
+    <!-- 
+    <div class="headline">
+        <p>Great tools make great games.</p>
+        <p>We make both.</p>
+    </div> -->
+
+    <div class="fullscreenSection">
+        <h1>Great tools make great games</h1>
+        <!-- <h2>We make both</h2> -->
+        <p> We make both</p>
+    </div>
+
+    <canvas class="glslCanvas" data-fragment-url="shader.frag"></canvas>
+
+
+    <div class="fullscreenSection">
         <h1>About us</h1>
         <p> Maxim Petrochenko </p>
-        <p> 8 years of experience in Unity development </p>
-
+        <p> 7 years of experience in Unity development </p>
     </div>
+    <canvas class="glslCanvas" data-fragment-url="shader.frag"></canvas>
 
-    <div class="sectionEven">
-        <h1>Our works</h1>
+
+
+    <div class="fullscreenSection">
+        <h1>Our work</h1>
         <p> We're working on it </p>
     </div>
+    <canvas class="glslCanvas" data-fragment-url="shader.frag"></canvas>
 
-    <div class="sectionOdd">
+
+    <div class="fullscreenSection">
         <h1>Contact</h1>
         <p> kubacho.lab@gmail.com </p>
     </div>
+    <canvas class="glslCanvas" data-fragment-url="shader.frag"></canvas>
+
+
+
+
 
 </body>
 
