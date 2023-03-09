@@ -61,8 +61,8 @@ body {
 
 
 .fullscreenSection {
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
 }
 
 
@@ -79,9 +79,8 @@ body {
 
 .canvas {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
 }
 
 
