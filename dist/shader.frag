@@ -67,7 +67,7 @@ float func( vec2 q, out vec4 ron )
 
 
 void main() {
-vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.y;
+vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.xy/1.5;
     float e = 2.0/u_resolution.y;
 
     vec4 on = vec4(0.0);
@@ -99,6 +99,9 @@ vec2 p = (2.0*gl_FragCoord.xy-u_resolution.xy)/u_resolution.y;
 	col = 1.1*col*col;
     
 
+
+col.rgb = vec3(f/8.0);
+//col.rgb = col.rgb/8.0;
 
     gl_FragColor = vec4(col,1.0);
 }

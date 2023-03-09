@@ -1,7 +1,7 @@
 body {
     font-family: 'Ubuntu', sans-serif;
     background: #222222;
-    margin: 0px 0px;
+    margin: 0;
 }
 
 .header {
@@ -11,7 +11,11 @@ body {
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    background: #282828;
+    /* background: rgb(18, 18, 18); */
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(50px);
+    z-index: 123;
+    /* backdrop-filter: blur(50px); */
 }
 
 
@@ -63,7 +67,33 @@ body {
 .fullscreenSection {
     width: 100vw;
     height: 100vh;
+    padding-left: 10vw;
+    /* padding-top: 20vw; */
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+
 }
+
+.fullscreenSection h1 {
+    font-size: 35px;
+    color: white;
+}
+
+.fullscreenSection h2 {
+    font-size: 25px;
+    line-height: 50%;
+    color: white;
+}
+
+.fullscreenSection p {
+    font-size: 18px;
+    line-height: 00%;
+    color: lightgrey;
+    color: rgb(172, 172, 172)
+}
+
 
 
 .headline {
@@ -71,39 +101,21 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 28px;
+    font-size: 27px;
     color: white;
     text-align: center;
 }
 
 .glslCanvas {
-    width: inherit;
-    height: inherit;
+    width: 100vw;
+    height: 100vh;
+    /* position: absolute; */
+    /* z-index: -1; */
 }
 
 
 
 
-
-.section {
-    padding: 40px;
-    margin: 10px;
-    margin-top: 20px;
-    text-align: center;
-    background: #282828;
-
-    color: white;
-}
-
-.section h1 {
-    font-size: 35px;
-}
-
-.section p {
-    font-size: 18px;
-    color: lightgrey;
-    color: rgb(172, 172, 172)
-}
 
 
 
