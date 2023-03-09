@@ -11,6 +11,7 @@
   "license": "ISC",
   "homepage": "kubacho.github.io/kubacho-lab",
   "dependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^5.0.0",
+    "http-server": "^14.1.1"
   }
 }

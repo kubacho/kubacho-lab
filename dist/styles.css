@@ -1,0 +1,102 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: #222222;
+}
+
+.header {
+    height: 70px;
+    /* height: 110px; */
+    padding-left: 23px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    /* padding-bottom: 60px; */
+    /* background: rgb(19, 19, 19); */
+}
+
+
+.logo {
+    float: left;
+    align-self: center;
+    /* background-color: wheat; */
+}
+
+.logo h1 {
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    font-size: 20px;
+}
+
+.logo p {
+    color: grey;
+    font-size: 15px;
+}
+
+
+
+
+.navbar {
+    overflow: hidden;
+    /* background-color: wheat; */
+    float: right;
+    align-self: center;
+}
+
+.navbar a {
+    float: right;
+    align-self: center;
+
+    display: block;
+    color: grey;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+
+
+
+
+
+.headline {
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+
+
+
+
+
+
+.section {
+    padding: 40px;
+    margin: 10px;
+    margin-top: 20px;
+    /* text-align: center; */
+    background: #282828;
+    color: white;
+}
+
+.section h1 {
+    font-size: 35px;
+}
+
+.section p {
+    font-size: 18px;
+    color: lightgrey;
+    color: rgb(172, 172, 172)
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
