@@ -83,7 +83,7 @@ void main(void)
     f = fractal(uvTransformed + f);
 
 
-    // f = 1.0-f;
+
 
     for(int i = 0; i < 9; i++)
         if(pageScroll < float(i))
@@ -182,7 +182,7 @@ Update();
 function Update() {
 
     gl.uniform1f(gl.getUniformLocation(program, "time"), (startTime - new Date().getTime()) / 1000);
-    gl.uniform1f(gl.getUniformLocation(program, "pageScroll"), (document.documentElement.scrollTop || document.body.scrollTop) / window.innerHeight);
+    gl.uniform1f(gl.getUniformLocation(program, "pageScroll"), 1 + (document.documentElement.scrollTop || document.body.scrollTop) / window.innerHeight);
     gl.uniform1f(gl.getUniformLocation(program, "scaleX"), (window.innerWidth + window.innerHeight) / 2 / window.innerHeight);
     gl.uniform1f(gl.getUniformLocation(program, "scaleY"), (window.innerWidth + window.innerHeight) / 2 / window.innerWidth);
     gl.viewport(0, 0, canvas.width, canvas.height);
