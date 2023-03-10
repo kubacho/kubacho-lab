@@ -83,6 +83,7 @@ void main(void)
     f = fractal(uvTransformed + f);
 
 
+    f = 1.0-f;
 
     for(int i = 0; i < 4; i++)
         if(pageScroll < float(i))
@@ -186,7 +187,6 @@ function Update() {
     gl.uniform1f(gl.getUniformLocation(program, "scaleY"), (window.innerWidth + window.innerHeight) / 2 / window.innerWidth);
     gl.viewport(0, 0, canvas.width, canvas.height);
 
-    console.log(canvas.width);
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     gl.flush();
