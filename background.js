@@ -83,9 +83,9 @@ void main(void)
     f = fractal(uvTransformed + f);
 
 
-    f = 1.0-f;
+    // f = 1.0-f;
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 9; i++)
         if(pageScroll < float(i))
             f = 1.0-f;
 
