@@ -3,10 +3,25 @@
 
 var fragCode = `
 
+#ifdef GL_ES
+    precision highp float;
+#endif
+
+
+uniform float time;
+uniform float pageScroll;
+
+varying vec2 uv;
+
 void main(void) 
 {
-    gl_FragColor = vec4(1.0, 0.0, 0.0, 0.1);
+    float f = .0;
+
+    f = fract(pageScroll);
+
+    gl_FragColor = vec4(f,f,f, 1);
 }
+
 `;
 
 
@@ -14,17 +29,18 @@ void main(void)
 
 var vertCode = `
 
-    attribute vec3 aPos;
-    attribute vec2 aTexCoord;
-    varying   vec2 pixel;
+    attribute vec3 vertexPos;
+    attribute vec2 vertexUV;
+    varying   vec2 uv;
 
     void main(void) 
     {
-        gl_Position = vec4(aPos, 1.);
-        pixel = aTexCoord;
+        gl_Position = vec4(vertexPos, 1);
+        uv = vec2(vertexUV.x, 1.0 - vertexUV.y);
     }
 
 `;
+
 
 
 
@@ -56,43 +72,38 @@ gl.useProgram(program);
 
 
 var vertices = new Float32Array([-1, -1, 0, 1, -1, 0, -1, 1, 0, 1, 1, 0]);
-var texCoords = new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]);
+var uvs = new Float32Array([0, 0, 1, 0, 0, 1, 1, 1]);
 
-// gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+var vertexPosLoc = gl.getAttribLocation(program, "vertexPos");
+gl.enableVertexAttribArray(vertexPosLoc);
 
-
-
-var aPosLoc = gl.getAttribLocation(program, "aPos");
-gl.enableVertexAttribArray(aPosLoc);
-
-var aTexLoc = gl.getAttribLocation(program, "aTexCoord");
-gl.enableVertexAttribArray(aTexLoc);
+var vertexUVLoc = gl.getAttribLocation(program, "vertexUV");
+gl.enableVertexAttribArray(vertexUVLoc);
 
 gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
-gl.bufferData(gl.ARRAY_BUFFER, vertices.byteLength + texCoords.byteLength, gl.STATIC_DRAW);
+gl.bufferData(gl.ARRAY_BUFFER, vertices.byteLength + uvs.byteLength, gl.STATIC_DRAW);
 gl.bufferSubData(gl.ARRAY_BUFFER, 0, vertices);
-gl.bufferSubData(gl.ARRAY_BUFFER, vertices.byteLength, texCoords);
-gl.vertexAttribPointer(aPosLoc, 3, gl.FLOAT, gl.FALSE, 0, 0);
-gl.vertexAttribPointer(aTexLoc, 2, gl.FLOAT, gl.FALSE, 0, vertices.byteLength);
+gl.bufferSubData(gl.ARRAY_BUFFER, vertices.byteLength, uvs);
+gl.vertexAttribPointer(vertexPosLoc, 3, gl.FLOAT, gl.FALSE, 0, 0);
+gl.vertexAttribPointer(vertexUVLoc, 2, gl.FLOAT, gl.FALSE, 0, vertices.byteLength);
 
 
-
-
-
-
-
-gl.clearColor(0, 1, 0, 1);
-gl.clear(gl.COLOR_BUFFER_BIT);
-gl.viewport(0, 0, canvas.width, canvas.height);
-gl.drawArrays(gl.TRIANGLES, 0, 3);
-
-
-
+var startTime = new Date().getTime();
 
 
 Update();
 
+
+
+
 function Update() {
+
+    gl.uniform1f(gl.getUniformLocation(program, "time"), (startTime - new Date().getTime()) / 1000);
+    gl.uniform1f(gl.getUniformLocation(program, "pageScroll"), (document.documentElement.scrollTop || document.body.scrollTop) / window.innerHeight);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    gl.flush();
 
 
     requestAnimationFrame(Update);
