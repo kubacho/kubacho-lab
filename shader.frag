@@ -3,10 +3,13 @@ precision mediump float;
 #endif
 
 
+
+const float scale = 1.5;
+const float speed = .1;
+const float dim = 7.0;
+
 const float panes = 4.0;
-const float scale = 1.0;
-const float speed = .5;
-const float dim = 4.0;
+
 const mat2 rotation = mat2( 0.80,  0.60, -0.60,  0.80 );
 
 
@@ -67,24 +70,30 @@ void main()
     vec2 uv = (vec2(0, u_resolution.y)- gl_FragCoord.xy)/u_resolution.x;
     float uvPane = (u_resolution.y- gl_FragCoord.y)/u_resolution.y * panes;
 
-uv *= scale;
+    uv *= scale;
+
 
     float f = 0.0;
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);
-    f = fractal(uv + f);   
 
+    f = fractal(uv + f);
+    f = fractal(uv + f);
+    f = fractal(uv + f);
 
     for(float i = 1.0; i < panes; i++)
         if(uvPane > i)
             f = 1.0-f;
 
+
+f *= (1.0-uv.x);
+f *= (1.0-uv.x);
+
     f /= dim;
+    f /= dim/2.0;
+
+
+
+    f = .1 + f;
+
 
     gl_FragColor = vec4(f,f,f,1.0);
 
