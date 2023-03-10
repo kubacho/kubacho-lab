@@ -87,8 +87,9 @@ void main(void)
     for(int i = 0; i < 4; i++)
         if(pageScroll < float(i))
             f = 1.0-f;
-        else if(uv.y < 1.0-fract(pageScroll))
-            f = 1.0-f;
+
+         if(uv.y < 1.0-fract(pageScroll))
+             f = 1.0-f;
 
 
 
@@ -181,9 +182,11 @@ function Update() {
 
     gl.uniform1f(gl.getUniformLocation(program, "time"), (startTime - new Date().getTime()) / 1000);
     gl.uniform1f(gl.getUniformLocation(program, "pageScroll"), (document.documentElement.scrollTop || document.body.scrollTop) / window.innerHeight);
-    gl.uniform1f(gl.getUniformLocation(program, "scaleX"), (canvas.width + canvas.height) / 2 / canvas.width);
-    gl.uniform1f(gl.getUniformLocation(program, "scaleY"), (canvas.width + canvas.height) / 2 / canvas.height);
+    gl.uniform1f(gl.getUniformLocation(program, "scaleX"), (window.innerWidth + window.innerHeight) / 2 / window.innerHeight);
+    gl.uniform1f(gl.getUniformLocation(program, "scaleY"), (window.innerWidth + window.innerHeight) / 2 / window.innerWidth);
     gl.viewport(0, 0, canvas.width, canvas.height);
+
+    console.log(canvas.width);
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     gl.flush();
