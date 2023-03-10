@@ -8,16 +8,97 @@ var fragCode = `
 #endif
 
 
-uniform float time;
-uniform float pageScroll;
+const float scale = 1.5;
+const float parallax = 2.0;
 
+const float speed = .1;
+const float dim = 3.0;
+const mat2 rotation = mat2( 0.80,  0.60, -0.60,  0.80 );
+
+
+uniform float time;
+uniform float scaleX;
+uniform float scaleY;
+uniform float pageScroll;
 varying vec2 uv;
+
+
+
+float random01(vec2 uv) { return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453); }
+float smoothstep(float f) { return f*f*(3.0-2.0*f); }
+vec2 smoothstep(vec2 f) { return f*f*(3.0-2.0*f); }
+
+float perlin(vec2 p) 
+{
+    vec2 ip = floor(p);
+    vec2 u = fract(p);
+    u = smoothstep(u);
+
+    float f = mix(
+        mix(random01(ip),random01(ip+vec2(1.0,0.0)),u.x),
+        mix(random01(ip+vec2(0.0,1.0)),random01(ip+vec2(1.0,1.0)),u.x)
+        ,u.y);
+
+    return f*f;
+}
+
+float fractal(vec2 uv)
+{
+    float f = 0.0;
+
+    f += 0.500000 * perlin(uv + time*speed); 
+    uv = rotation * uv * 2.0;
+
+    f += 0.031250 * perlin(uv);
+    uv = rotation * uv * 2.0;
+
+    f += 0.250000 * perlin(uv); 
+    uv = rotation * uv * 2.0;
+
+    f += 0.125000 * perlin(uv);
+    uv = rotation * uv * 2.0;
+
+    f += 0.062500 * perlin(uv); 
+    uv = rotation * uv * 2.0;
+    
+    f += 0.015625 * perlin(uv + sin(time*speed));//
+
+    f*=1.1;
+
+    return f;
+}
+
 
 void main(void) 
 {
-    float f = .0;
 
-    f = fract(pageScroll);
+    vec2 uvTransformed = (uv+ vec2(0, pageScroll/parallax)) * vec2(scaleX, scaleY) * scale;
+
+
+
+    float f = 0.0;
+
+    f = fractal(uvTransformed + f);
+    f = fractal(uvTransformed + f);
+    f = fractal(uvTransformed + f);
+
+
+
+    for(int i = 0; i < 4; i++)
+        if(pageScroll < float(i))
+            f = 1.0-f;
+        else if(uv.y < 1.0-fract(pageScroll))
+            f = 1.0-f;
+
+
+
+    f *= uv.x;
+
+    f /= dim;
+    f /= dim/2.0;
+
+
+    f = .1 + f;
 
     gl_FragColor = vec4(f,f,f, 1);
 }
@@ -100,6 +181,8 @@ function Update() {
 
     gl.uniform1f(gl.getUniformLocation(program, "time"), (startTime - new Date().getTime()) / 1000);
     gl.uniform1f(gl.getUniformLocation(program, "pageScroll"), (document.documentElement.scrollTop || document.body.scrollTop) / window.innerHeight);
+    gl.uniform1f(gl.getUniformLocation(program, "scaleX"), (canvas.width + canvas.height) / 2 / canvas.width);
+    gl.uniform1f(gl.getUniformLocation(program, "scaleY"), (canvas.width + canvas.height) / 2 / canvas.height);
     gl.viewport(0, 0, canvas.width, canvas.height);
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
