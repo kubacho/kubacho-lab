@@ -67,7 +67,7 @@ float fractal(vec2 uv)
 
 void main() 
 {
-    vec2 uv = (vec2(0, u_resolution.y)- gl_FragCoord.xy)/u_resolution.x;
+    vec2 uv = (vec2(0, u_resolution.y)- gl_FragCoord.xy) / (u_resolution.x+u_resolution.y)/.5;
     float uvPane = (u_resolution.y- gl_FragCoord.y)/u_resolution.y * panes;
 
     uv *= scale;
@@ -79,9 +79,9 @@ void main()
     f = fractal(uv + f);
     f = fractal(uv + f);
 
-    for(float i = 1.0; i < panes; i++)
-        if(uvPane > i)
-            f = 1.0-f;
+//    for(float i = 0.0; i < panes; i++)
+ //       if(uvPane > i)
+  //          f = 1.0-f;
 
 
 f *= (1.0-uv.x);
